@@ -4,7 +4,7 @@
 
 This is the github repo for the paper "Structured and Balanced Multi-component and Multi-layer Neural Networks". 
 
-In this work, we design a balanced multi-component and multi-layer neural network (MMNN) structure to approximate functions with complex features with both accuracy and efficiency in terms of degrees of freedom and computation cost. The key idea is based on a multi-layer smooth decomposition each component of which can be approximated effectively by a single-layer network. Using balanced structures in the network reduces the need for large degrees of freedom compared to fully connected networks and makes the optimization/learning process more efficient. Extensive numerical experiments are presented to illustrate the effectiveness of MMNNs in approximating high oscillatory functions and its automatic adaptivity in capturing localized features. 
+In this work, we design a balanced multi-component and multi-layer neural network (MMNN) structure to approximate functions with complex features with both accuracy and efficiency in terms of degrees of freedom and computation cost. The key idea is based on a multi-layer smooth decomposition each component of which can be approximated effectively by a single-layer network. Using balanced structures in the network reduces the need for large degrees of freedom compared to fully connected networks (FCNNs) and makes the optimization/learning process more efficient. Extensive numerical experiments are presented to illustrate the effectiveness of MMNNs in approximating high oscillatory functions and its automatic adaptivity in capturing localized features. 
 
 ## Architecture of MMNNs
 
@@ -23,30 +23,19 @@ We call each element of $\boldsymbol{h}$, i.e., $\boldsymbol{h}[i]$ for $i = 1, 
 
 A MMNN is a multi-layer composition of $\boldsymbol{h}_i$, i.e.,
 
-$$ \boldsymbol{h} = \boldsymbol{h}_m \circ \cdots \circ \boldsymbol{h}_2 \circ \boldsymbol{h}_1 $$
+$$ \boldsymbol{h} = \boldsymbol{h}_m \circ \cdots \circ \boldsymbol{h}_2 \circ \boldsymbol{h}_1, $$
 
-where each $\boldsymbol{h}_i : \mathbb{R}^{d_{i-1}} \to \mathbb{R}^{d_i}$ is a multi-component shallow network defined of width $n_i$, where
+where each $`\boldsymbol{h}_i : \mathbb{R}^{d_{i-1}} \to \mathbb{R}^{d_i}`$ is a multi-component shallow network of width $n_i$, where
 
-$$ d_0 = d_{\text{in}}, \quad d_1, \ldots, d_{m-1} \ll n_i, \quad d_m = d_{\text{out}} $$
+$$ d_0 = d_{\text{in}}, \quad d_1, \ldots, d_{m-1} \ll n_i, \quad d_m = d_{\text{out}}. $$
 
-The width of this MMNN is defined as $\max\{n_i : i = 1, 2, \ldots, m-1\}$, the rank as $\max\{d_i : i = 1, 2, \ldots, m-1\}$, and the depth as $m$. To simplify, we denote a network with width $w$, rank $r$, and depth $l$ using the compact notation $(w, r, l)$. See Figure 1(a) for an illustration of MMNN of size (4, 2, 2). 
+The width of this MMNN is defined as $\max\lbrace n_i : i = 1, 2, \ldots, m-1\rbrace$, the rank as $\max\lbrace d_i : i = 1, 2, \ldots, m-1\rbrace$, and the depth as $m$. To simplify, we denote a network with width $w$, rank $r$, and depth $l$ using the compact notation $(w, r, l)$. 
 
-In comparison, each layer in a typical deep FCNN takes the form $\sigma(\widetilde{\boldsymbol{W}}x)$, and each hidden neuron is individually a function of the input $x$ or each point $x \in \mathbb{R}^{d_{\text{in}}}$ is mapped to $\mathbb{R}^n$, where $n$ is the layer width. All weights $\widetilde{\boldsymbol{W}}$ are training parameters. In MMNN, each layer is composed of multiple components $\widetilde{\boldsymbol{A}}\sigma(\widetilde{\boldsymbol{W}}x)$. Each component is a linear combination of randomly parameterized hidden neurons $\sigma(\widetilde{\boldsymbol{W}}x)$, which can be more effectively and stably trained through $\widetilde{\boldsymbol{A}}$ as a smooth decomposition/transformation. Typically the number of components $d_{\text{out}}$ is (much) smaller than the layer width $n$ in our experiments.
-In contrast, an FCNN $\phi$ can be expressed in the following composition form
+In comparison, each layer in a typical deep FCNN takes the form $\sigma(\boldsymbol{W}\boldsymbol{x}+\boldsymbol{b})$, and each hidden neuron is individually a function of the input $\boldsymbol{x}$ or each point $\boldsymbol{x} \in \mathbb{R}^{d_{\text{in}}}$ is mapped to $\mathbb{R}^n$, where $n$ is the layer width. Typically, all weights are training parameters in FCNNs.
 
-$$ \phi = L_L \circ \sigma \circ L_{L-1} \circ \cdots \circ \sigma \circ L_1 \circ \sigma \circ L_0 $$
+For very deep MMNNs, one can borrow ideas from ResNets to address the gradient vanishing issue, making training more efficient. 
 
-where $L_i$ is an affine linear map given by $L_i(y) = \boldsymbol{W}_i \cdot y + \boldsymbol{b}_i$. Readers are referred to Figure 1(b) for an illustration and also a comparison with the MMNN.
 
-For very deep MMNNs, one can borrow ideas from ResNets to address the gradient vanishing issue, making training more efficient. Incorporating this idea, we propose a new architecture given by a multi-layer composition of $I + \boldsymbol{h}_i$, i.e.,
-
-$$ \boldsymbol{h} = \boldsymbol{h}_m \circ (I + \boldsymbol{h}_{m-1}) \circ \cdots \circ (I + \boldsymbol{h}_3) \circ (I + \boldsymbol{h}_2) \circ \boldsymbol{h}_1 $$
-
-where each $\boldsymbol{h}_i : \mathbb{R}^{d_{i-1}} \rightarrow \mathbb{R}^{d_i}$ is a multi-component shallow network defined in (1) with width $n_i$,
-
-$$ d_0 = d_{\text{in}}, \quad d_1 = \cdots = d_{m-1} = r \ll n_i, \quad d_m = d_{\text{out}} $$
-
-and $I$ is the identity map. We call this architecture ResMMNN.
 
 
 <img width="1163" alt="mlp_kan_compare" src="https://github.com/KindXiaoming/pykan/assets/23551623/695adc2d-0d0b-4e4b-bcff-db2c8070f841">
