@@ -40,7 +40,15 @@ For very deep MMNNs, one can borrow ideas from ResNets to address the gradient v
 
 Although a one-hidden-layer neural network is a low-pass filter that can not represent and learn high frequency features effectively (see our previous paper [here](https://arxiv.org/abs/2306.17301)), we use mathematical construction to show that MMNNs, which are composed of one-hidden-layer neural networks, can overcome this difficulty by decomposition of the complexity through components and/or depth. We emphasize that the decomposition is highly non-unique. Our construction is "man-made" which can be different from the one by computer through an optimization (learning) process. Below are two examples in 1D; for more details, please refer to our paper.
 
+1. Illustrations of $f(x)=\frac{1}{1000x^2+1}$ and its decomposition components $f_i$ and $\psi_i$ such that
+
+$$f(x) = \sum_{i=1}^{4} f_i\circ \psi_i(x) -  \underbrace{\sum_{i=1}^{3} f(x_i)}_{\text{constant}}.$$
+
 <img src="./figures/decomposition1D1.png" alt="Decomposition Eg 1D"  width="800" />
+
+2. Illustrations of $f(x)=\cos^2(6\pi x)+\sin(10\pi x^2)$ and its decomposition components $f_i$ and $\psi_i$ such that
+
+$$f(x) = \sum_{i=1}^{4} f_i\circ \psi_i(x) -  \underbrace{\sum_{i=1}^{3} f(x_i)}_{\text{constant}}.$$
 
 <img src="./figures/decomposition1D2.png" alt="Decomposition Eg 1D"  width="800" />
 
