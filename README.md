@@ -1,4 +1,4 @@
-<img width="600" alt="kan_plot" src="https://github.com/KindXiaoming/pykan/assets/23551623/a2d2d225-b4d2-4c1e-823e-bc45c7ea96f9">
+![sss](https://github.com/ShijunZhangMath/MMNN/figures/LearningDynamics1D1.gif)
 
 # Multi-component and Multi-layer Neural Networks (MMNNs)
 
