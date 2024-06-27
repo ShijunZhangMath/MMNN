@@ -2,9 +2,50 @@
 
 # Multi-component and Multi-layer Neural Networks (MMNNs)
 
-This is the github repo for the paper ["Structured and Balanced Multi-component and Multi-layer Neural Networks"](). Find the documentation [here](https://kindxiaoming.github.io/pykan/). Here's [author's note](https://github.com/KindXiaoming/pykan?tab=readme-ov-file#authors-note) responding to current hype of KANs.
+This is the github repo for the paper "Structured and Balanced Multi-component and Multi-layer Neural Networks". 
 
-Kolmogorov-Arnold Networks (KANs) are promising alternatives of Multi-Layer Perceptrons (MLPs). KANs have strong mathematical foundations just like MLPs: MLPs are based on the universal approximation theorem, while KANs are based on Kolmogorov-Arnold representation theorem. KANs and MLPs are dual: KANs have activation functions on edges, while MLPs have activation functions on nodes. This simple change makes KANs better (sometimes much better!) than MLPs in terms of both model **accuracy** and **interpretability**. A quick intro of KANs [here](https://kindxiaoming.github.io/pykan/intro.html).
+In this work, we design a balanced multi-component and multi-layer neural network (MMNN) structure to approximate functions with complex features with both accuracy and efficiency in terms of degrees of freedom and computation cost. The key idea is based on a multi-layer smooth decomposition each component of which can be approximated effectively by a single-layer network. Using balanced structures in the network reduces the need for large degrees of freedom compared to fully connected networks and makes the optimization/learning process more efficient. Extensive numerical experiments are presented to illustrate the effectiveness of MMNNs in approximating high oscillatory functions and its automatic adaptivity in capturing localized features. 
+
+## Architecture of MMNN
+
+In this section, we introduce our Multi-component and Multi-layer Neural Network (MMNN). Each layer of MMNN is a (shallow) neural network of the form
+
+\[ h(x) = A\sigma(Wx + b) + c \]
+
+to approximate a vector-valued function \( f \in C([0, 1]^{d_{\text{in}}}; \mathbb{R}^{d_{\text{out}}}) \), where \( W \in \mathbb{R}^{n \times d_{\text{in}}} \), \( A \in \mathbb{R}^{d_{\text{out}} \times n} \), and \( n \) is the width of this network. Here, \( \sigma : \mathbb{R} \rightarrow \mathbb{R} \) represents the activation function that can be applied elementwise to vector inputs. Throughout this paper, the activation function is ReLU, unless otherwise specified. One can also write it in a more compact form,
+
+$ h = A\sigma(\widetilde{W}\widetilde{x}) + c = \widetilde{A}\sigma(\widetilde{W}\widetilde{x}) $
+
+where
+
+\[ \widetilde{W} = [W, b], \quad \widetilde{A} = [A, c], \quad \widetilde{x} = \begin{bmatrix} x \\ 1 \end{bmatrix} \]
+
+We call each element of \( h \), i.e., \( h[i] = \widetilde{A}[i, :] \cdot \begin{bmatrix} \sigma(\widetilde{W}x) \\ 1 \end{bmatrix} \) for \( i = 1, 2, \ldots, d_{\text{out}} \), a component. Here are a few key features of \( h \):
+
+1. Each component is viewed as a linear combination of basis functions \( \sigma(W[i, :] \cdot x + b[i]) \), \( i = 1, 2, \ldots, n \), which is a function in \( x \) as a whole.
+2. Different components of \( h \) share the same set of basis with different coefficients \( \widetilde{A}[i, :] \).
+3. Only \( \widetilde{A} \) are trained while \( \widetilde{W} \) are randomly assigned and fixed.
+4. The output dimension \( d_{\text{out}} \) and network width \( n \) can be tuned according to the intrinsic dimension and complexity of the problem.
+
+In comparison, each layer in a typical deep FCNN takes the form \( \sigma(\widetilde{W}x) \), and each hidden neuron is individually a function of the input \( x \) or each point \( x \in \mathbb{R}^{d_{\text{in}}} \) is mapped to \( \mathbb{R}^n \), where \( n \) is the layer width. All weights \( \widetilde{W} \) are training parameters. In MMNN, each layer is composed of multiple components \( \widetilde{A}\sigma(\widetilde{W}x) \). Each component is a linear combination of randomly parameterized hidden neurons \( \sigma(\widetilde{W}x) \), which can be more effectively and stably trained through \( \widetilde{A} \) as a smooth decomposition/transformation. Typically the number of components \( d_{\text{out}} \) is (much) smaller than the layer width \( n \) in our experiments.
+
+A MMNN is a multi-layer composition of \( h_i \), i.e.,
+
+\[ h = h_m \circ \cdots \circ h_2 \circ h_1 \]
+
+where each \( h_i : \mathbb{R}^{d_{i-1}} \rightarrow \mathbb{R}^{d_i} \) is a multi-component shallow network defined in (1) of width \( n_i \), where
+
+\[ d_0 = d_{\text{in}}, \quad d_1, \ldots, d_{m-1} \ll n_i, \quad d_m = d_{\text{out}} \]
+
+The width of this MMNN is defined as \( \max\{n_i : i = 1, 2, \ldots, m-1\} \), the rank as \( \max\{d_i : i = 1, 2, \ldots, m-1\} \), and the depth as \( m \). To simplify, we denote a network with width \( w \), rank \( r \), and depth \( l \) using the compact notation \( (w, r, l) \). See Figure 1(a) for an illustration of MMNN of size (4, 2, 2). In contrast, an FCNN \( \phi \) can be expressed in the following composition form
+
+\[ \phi = L_L \circ \sigma \circ L_{L-1} \circ \cdots \circ \sigma \circ L_1 \circ \sigma \circ L_0 \]
+
+where \( L_i \) is an affine linear map given by \( L_i(y) = W_i \cdot y + b_i \). Readers are referred to Figure 1(b) for an illustration and also a comparison with the MMNN.
+
+For very deep MMNNs, one can borrow ideas from ResNets \cite{ResNet} to address the gradient vanishing issue, making training more efficient. Incorporating this idea, we propose a new architecture given by a multi-layer composition of \( I + h_i \), i.e.,
+
+\[ h = h_m \circ (I + h_{m-1}) \circ \cdots \circ (I + h_3) \circ (I + h_2) \circ h_1
 
 <img width="1163" alt="mlp_kan_compare" src="https://github.com/KindXiaoming/pykan/assets/23551623/695adc2d-0d0b-4e4b-bcff-db2c8070f841">
 
