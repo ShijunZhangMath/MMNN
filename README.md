@@ -45,4 +45,26 @@ Although a one-hidden-layer neural network is a low-pass filter that can not rep
 
 In our paper, we perform extensive experiments to validate our analysis and demonstrate the effectiveness of MMNNs. In particular, our tests show its ability in 1) adaptively capturing localized high-frequency features, 2) approximating highly oscillatory functions, and 3) extending to higher dimensions as well as some interesting learning dynamics. Below are some selected examples; for additional examples, please refer to our paper.
 
+1. Learning process of $f(x)=\sin(50\pi x)$ approximated by a ResMMNN of size (800, 400, 15).
+  
+   <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="600" />
+
+2. Learning process of $f(x)=\sin(36\pi |x|^{1.5})$ approximated by a ResMMNN of size (800, 40, 15).
+  
+   <img src="./figures/LearningDynamics1D2.gif" alt="Learning Dynamics Eg 1D"  width="600" />
+
+3. Learning process of $f$ approximated by a MMNN of size (500, 20, 8), where $f$ is a 2D function defined in polar coordinates $(r, \theta)$ as
+
+$$
+f(r, \theta) = 
+\begin{cases} 
+0 & \text{if } 0.5 + 5\rho - 5r \leq 0, \\
+1 & \text{if } 0.5 + 5\rho - 5r \geq 1, \\
+0.5 + 5\rho - 5r & \text{otherwise},
+\end{cases}
+\qquad \text{where}\qquad  \rho = 0.5 + 0.1 \cos(\pi^2 \theta^2).
+$$
+  
+   <img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="600" />
+
 
