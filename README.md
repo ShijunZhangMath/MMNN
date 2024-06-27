@@ -38,7 +38,11 @@ For very deep MMNNs, one can borrow ideas from ResNets to address the gradient v
 
 ## Decomposition via MMNNs
 
-Although a one-hidden-layer neural network is a low-pass filter that can not represent and learn high frequency features effectively (see our previous paper [here](https://arxiv.org/abs/2306.17301)), we use mathematical construction to show that MMNNs, which are composed of one-hidden-layer neural networks, can overcome this difficulty by decomposition of the complexity through components and/or depth. We emphasize that the decomposition is highly non-unique. Our construction is "man-made" which can be different from the one by computer through an optimization (learning) process. Below are two examples in 1D. One may read our paper for more details.
+Although a one-hidden-layer neural network is a low-pass filter that can not represent and learn high frequency features effectively (see our previous paper [here](https://arxiv.org/abs/2306.17301)), we use mathematical construction to show that MMNNs, which are composed of one-hidden-layer neural networks, can overcome this difficulty by decomposition of the complexity through components and/or depth. We emphasize that the decomposition is highly non-unique. Our construction is "man-made" which can be different from the one by computer through an optimization (learning) process. Below are two examples in 1D; for more details, please refer to our paper.
 
+
+## Numerical experiments
+
+In our paper, we perform extensive experiments to validate our analysis and demonstrate the effectiveness of MMNNs. In particular, our tests show its ability in 1) adaptively capturing localized high-frequency features, 2) approximating highly oscillatory functions, and 3) extending to higher dimensions as well as some interesting learning dynamics. Below are some selected examples; for additional examples, please refer to our paper.
 
 
