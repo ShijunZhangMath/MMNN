@@ -35,6 +35,20 @@ In comparison, each layer in a typical deep FCNN takes the form $\sigma(\boldsym
 
 For very deep MMNNs, one can borrow ideas from ResNets to address the gradient vanishing issue, making training more efficient. 
 
+1. A MMNN of size $(4,2,2)$, i.e., width $4$, rank 2, and depth $2$.
+   
+<img src="./figures/MMNN.png" alt="MMNN Eg"  width="600" />
+
+
+2. An FCNN of size $(4,2,3)$, i.e., width $4$ and depth $2$.
+   
+<img src="./figures/FCNN.png" alt="MMNN Eg"  width="500" />
+
+
+3. A ResMMNN of size $(4,2,3)$, i.e., width $4$, rank 2, and depth $3$.
+   
+<img src="./figures/ResMMNN.png" alt="ResMMNN Eg"  width="800" />
+
 
 ## Decomposition via MMNNs
 
