@@ -1,4 +1,5 @@
-![sss](https://github.com/ShijunZhangMath/MMNN/figures/LearningDynamics1D1.gif)
+![Learning Dynamics Eg 2D](./figures/LearningDynamics2D.gif)
+![Learning Dynamics Eg 1D](./figures/LearningDynamics1D1.gif)
 
 # Multi-component and Multi-layer Neural Networks (MMNNs)
 
