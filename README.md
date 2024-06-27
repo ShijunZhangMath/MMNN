@@ -1,4 +1,4 @@
-<img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="200" /> <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="240" />
+<img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="300" /> <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="360" />
 
 # Multi-component and Multi-layer Neural Networks (MMNNs)
 
