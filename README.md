@@ -58,13 +58,13 @@ Although a one-hidden-layer neural network is a low-pass filter that can not rep
 
 $$f(x) = \sum_{i=1}^{4} f_i\circ \psi_i(x) -  \underbrace{\sum_{i=1}^{3} f(x_i)}_{\text{constant}}.$$
 
-<img src="./figures/decomposition1D1.png" alt="Decomposition Eg 1D"  width="800" />
+<img src="./figures/decomposition1D1.png" alt="Decomposition Eg 1D"  width="600" />
 
 2. Illustrations of $f(x)=\cos^2(6\pi x)+\sin(10\pi x^2)$ and its decomposition components $f_i$ and $\psi_i$ such that
 
 $$f(x) = \sum_{i=1}^{4} f_i\circ \psi_i(x) -  \underbrace{\sum_{i=1}^{3} f(x_i)}_{\text{constant}}.$$
 
-<img src="./figures/decomposition1D2.png" alt="Decomposition Eg 1D"  width="800" />
+<img src="./figures/decomposition1D2.png" alt="Decomposition Eg 1D"  width="600" />
 
 ## Numerical experiments
 
@@ -72,11 +72,11 @@ In our paper, we perform extensive experiments to validate our analysis and demo
 
 1. Learning process of $f(x)=\sin(50\pi x)$ approximated by a ResMMNN of size (800, 400, 15).
   
-   <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="600" />
+   <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="480" />
 
 2. Learning process of $f(x)=\sin(36\pi |x|^{1.5})$ approximated by a ResMMNN of size (800, 40, 15).
   
-   <img src="./figures/LearningDynamics1D2.gif" alt="Learning Dynamics Eg 1D"  width="600" />
+   <img src="./figures/LearningDynamics1D2.gif" alt="Learning Dynamics Eg 1D"  width="480" />
 
 3. Learning process of $f$ approximated by a MMNN of size (500, 20, 8), where $f$ is a 2D function defined in polar coordinates $(r, \theta)$ as
 
@@ -90,6 +90,6 @@ f(r, \theta) =
 \qquad \text{where}\qquad  \rho = 0.5 + 0.1 \cos(\pi^2 \theta^2).
 $$
   
-   <img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="600" />
+   <img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="400" />
 
 
