@@ -26,7 +26,7 @@ def func(x):
     z1 = 0.5 - 5*(r-r1)
     def g(z):        
         z = np.maximum(z, 0)
-        z = np.minimum(z,1)
+        z = np.minimum(z, 1)
         return(z)
     y = g(z1)
     return y
@@ -62,7 +62,6 @@ X1, X2 = np.meshgrid(x1, x2)
 X = np.concatenate([np.reshape(X1,[-1,1]),
                           np.reshape(X2,[-1,1])],axis=1)
 Y = func(X).reshape([-1,1])
-print(Y.shape)
 x_train = torch.tensor(X, device=device, dtype=mydtype)
 y_train = torch.tensor(Y, device=device, dtype=mydtype)
 train_dataset = torch.utils.data.TensorDataset(x_train, y_train)
