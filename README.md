@@ -1,8 +1,9 @@
 <img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="300" /> <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="360" />
 
-# Multi-component and Multi-layer Neural Networks (MMNNs)
+This is the github repo for the paper "**Structured and Balanced Multi-Component and Multi-Layer Neural Networks**" [https://arxiv.org/abs/2407.00765](https://arxiv.org/abs/2407.00765).
 
-This is the github repo for the paper "Structured and Balanced Multi-component and Multi-layer Neural Networks". 
+## Abstract
+
 
 In this work, we propose a balanced multi-component and multi-layer neural network (MMNN) structure to approximate functions with complex features with both accuracy and efficiency in terms of degrees of freedom and computation cost. The main idea is motivated by a multi-component, each of which can be approximated effectively by a single-layer network, and multi-layer decomposition in a ``divide-and-conquer" type of strategy to deal with a complex function. While an easy modification to fully connected neural networks (FCNNs) or multi-layer perceptrons (MLPs) through the introduction of balanced multi-component structures in the network, MMNNs achieve a significant reduction of training parameters, a much more efficient training process, and a much improved accuracy compared to FCNNs or MLPs. Extensive numerical experiments are presented to illustrate the effectiveness of MMNNs in approximating high oscillatory functions and its automatic adaptivity in capturing localized features. 
 
