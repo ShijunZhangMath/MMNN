@@ -1,4 +1,4 @@
-<img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="300" /> <img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="360" />
+<img src="./figures/LearningDynamics2D.gif" alt="Learning Dynamics Eg 2D"  width="300" /> &nbsp;&nbsp;&nbsp; &emsp;&emsp;&emsp;<img src="./figures/LearningDynamics1D1.gif" alt="Learning Dynamics Eg 1D"  width="360" />
 
 This is the github repo for the paper "**Structured and Balanced Multi-Component and Multi-Layer Neural Networks**" [https://arxiv.org/abs/2407.00765](https://arxiv.org/abs/2407.00765).
 
